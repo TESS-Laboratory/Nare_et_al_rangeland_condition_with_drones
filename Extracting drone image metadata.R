@@ -30,7 +30,7 @@ y2 <- gcps2$GPSLatitude    ## y coordinates for AOI2 GCPs
 
 x3 <- gcps3$GPSLongitude   ## x coordinates for AOI3 GCPs
 y3 <- gcps3$GPSLatitude    ## y coordinates for AOI 1 GCPs
-x3
+
 ####extract altitude and subtract 1 meter offset to obtain ground elevation
 alt1 <- gcps1$GPSAltitude-1 ## altitude for GCPs on AOI 1 minus 1 m offset between drone and ground
 alt2 <- gcps2$GPSAltitude-1 ## altitude for GCPs on AOI 2 minus 1 m offset between drone and ground
