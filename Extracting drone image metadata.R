@@ -21,22 +21,20 @@ gcps1 <- as.data.frame(read_exif(AOI1))
 gcps2 <- as.data.frame(read_exif(AOI2))
 gcps3 <- as.data.frame(read_exif(AOI3))
 
-
-
 ###extract x and y coordinates
-x1 <- gcps1$GPSLongitude
-y1 <- gcps1$GPSLatitude
+x1 <- gcps1$GPSLongitude   ## x coordinates for AOI1 GCPs
+y1 <- gcps1$GPSLatitude    ## y coordinates for AOI1 GCPs
 
-x2 <- gcps2$GPSLongitude
-y2 <- gcps2$GPSLatitude
+x2 <- gcps2$GPSLongitude   ## x coordinates for AOI2 GCPs
+y2 <- gcps2$GPSLatitude    ## y coordinates for AOI2 GCPs
 
-x3 <- gcps3$GPSLongitude
-y3 <- gcps3$GPSLatitude
-
+x3 <- gcps3$GPSLongitude   ## x coordinates for AOI3 GCPs
+y3 <- gcps3$GPSLatitude    ## y coordinates for AOI 1 GCPs
+x3
 ####extract altitude and subtract 1 meter offset to obtain ground elevation
-alt1 <- gcps1$GPSAltitude-1
-alt2 <- gcps2$GPSAltitude-1
-alt3 <- gcps3$GPSAltitude-1
+alt1 <- gcps1$GPSAltitude-1 ## altitude for GCPs on AOI 1 minus 1 m offset between drone and ground
+alt2 <- gcps2$GPSAltitude-1 ## altitude for GCPs on AOI 2 minus 1 m offset between drone and ground
+alt3 <- gcps3$GPSAltitude-1 ## altitude for GCPs on AOI 3 minus 1 m offset between drone and ground
 
 # Combine x, y, and ground altitude into a data frame for each AOI
 GCP_AOI1 <- data.frame(x = x1, y = y1, ground_altitude = alt1)
