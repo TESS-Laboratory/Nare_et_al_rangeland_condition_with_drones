@@ -60,6 +60,7 @@ source("Packages.R")
 
 # Call the function for each AOI folder
 
-extract_GCP_metadata("C:\Users\202200875\OneDrive - buan.ac.bw\Documents\Drone research\Data\GCPs\AOI1",height_offset=1)
+extract_GCP_metadata("C:/Users/202200875/OneDrive - buan.ac.bw/Documents/Drone research/Data/GCPs/AOI1",height_offset=1)
 extract_GCP_metadata("C:/Users/202200875/OneDrive - buan.ac.bw/Documents/Drone research/Data/GCPs/AOI2",height_offset=1)
 extract_GCP_metadata("C:/Users/202200875/OneDrive - buan.ac.bw/Documents/Drone research/Data/GCPs/AOI3",height_offset=1)
+
