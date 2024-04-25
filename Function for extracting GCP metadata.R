@@ -26,7 +26,7 @@ source("Packages.R")
   #   datetime_stamp = x$DateTimeOriginal
   # ))
   # Extract x, y, z coordinates and GNSS-derived datetime stamp
-  xy_coords <- lapply(metadata, data.frame(
+  xy_coords <- lapply(metadata, function(x) data.frame(
     latitude = x$GPSLatitude,
     longitude = x$GPSLongitude,
     altitude = x$GPSAltitude - height_offset,
@@ -34,7 +34,6 @@ source("Packages.R")
     z_accuracy = 0.06,        #### This is a temporary hard coded number, still working on the metric  
     datetime_stamp = x$DateTimeOriginal
   ))
-  
   # Combine metadata into a single data frame
   combined_metadata <- do.call(rbind, xy_coords)
   

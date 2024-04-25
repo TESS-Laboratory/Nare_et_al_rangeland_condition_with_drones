@@ -1,7 +1,7 @@
 # Load necessary libraries
 library(tidyverse)
 
-# Read the csv file
+# Read the csv file----
 
 Biomass <- read_csv("C:/Users/202200875/OneDrive - buan.ac.bw/Documents/Drone research/Data/Biosum.csv")
 
@@ -10,5 +10,17 @@ head(Biomass)  #Display first few rows
 tail(Biomass)  #Display last rows
 dim(Biomass)  #Diplay number of columns and rows
 
-# Summarise the data
-summarise()
+# Calculate sum of dry weight for each plot----
+ID <- Biomass %>%
+  group_by(`Plot ID`) %>%
+  summarize(total_AGB = sum(`Dry weight [g]`)) 
+
+# Join with original data to filter for rows corresponding to maximum biomass----
+Biomass_Summary <- Biomass %>%
+  left_join(ID,by="Plot ID") %>%
+  group_by(`Plot ID`) %>%
+  filter(`Dry weight [g]` == max(`Dry weight [g]`)) %>%
+  select(`Plot ID`, Species=`Partition`,total_AGB)
+
+### Save as csv
+write.csv(Biomass_Summary, file = "Biomass_summary.csv", row.names = FALSE)
