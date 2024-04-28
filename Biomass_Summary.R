@@ -24,3 +24,11 @@ Biomass_Summary <- Biomass %>%
 
 ### Save as csv
 write.csv(Biomass_Summary, file = "Biomass_summary.csv", row.names = FALSE)
+
+
+#### Playing around
+summary(Biomass_Summary)
+plot(Biomass_Summary)
+ggplot(Biomass_Summary, aes(Species,total_AGB))+
+  geom_point()+
+  geom_smooth(method = "lm")

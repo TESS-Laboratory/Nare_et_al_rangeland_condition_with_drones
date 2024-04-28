@@ -20,3 +20,6 @@ elongation[6, ]
 # And of course you can mix it all together!
 elongation[6, ]$Indiv   # returns the value in the column Indiv for the sixth observation
 # (much easier calling columns by their names than figuring out where they are!)
+
+
+

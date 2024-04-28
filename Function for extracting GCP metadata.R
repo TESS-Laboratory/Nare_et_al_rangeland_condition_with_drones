@@ -6,7 +6,7 @@ source("Packages.R")
  ## Define the absolute path where images are located
   directory_path <- ("C:/Users/202200875/OneDrive - buan.ac.bw/Documents/Drone research/Data/GCPs")
   
-  extract_GCP_metadata <- function(directory_path, height_offset = 0) {
+  extract.GCP.metadata <- function(directory_path, height_offset = 0) {
   # Extract directory name to use as the name for the output csv
   directory_name <- basename(directory_path)
 
@@ -39,7 +39,6 @@ source("Packages.R")
   
   # Define CRS of coordinates
   crs <- "WGS84 EPSG::32735"
-  
   # Insert a new row specifying CRS
   combined_metadata <- rbind(
     data.frame(
@@ -54,12 +53,12 @@ source("Packages.R")
   )
   
   # Save metadata as CSV file
-  write.csv(combined_metadata, file.path(directory_path, paste0(directory_name, "_data.csv")), row.names = FALSE)
+  write.csv(combined_metadata, file.path(directory_path, paste0(directory_name, "_GCP_data.csv")), row.names = FALSE)
 }
 
 # Call the function for each AOI folder
 
-extract_GCP_metadata("C:/Users/202200875/OneDrive - buan.ac.bw/Documents/Drone research/Data/GCPs/AOI1",height_offset=1)
-extract_GCP_metadata("C:/Users/202200875/OneDrive - buan.ac.bw/Documents/Drone research/Data/GCPs/AOI2",height_offset=1)
-extract_GCP_metadata("C:/Users/202200875/OneDrive - buan.ac.bw/Documents/Drone research/Data/GCPs/AOI3",height_offset=1)
+  extract.GCP.metadata("C:/Users/202200875/OneDrive - buan.ac.bw/Documents/Drone research/Data/GCPs/AOI1",height_offset=1)
+  extract.GCP.metadata("C:/Users/202200875/OneDrive - buan.ac.bw/Documents/Drone research/Data/GCPs/AOI2",height_offset=1)
+  extract.GCP.metadata("C:/Users/202200875/OneDrive - buan.ac.bw/Documents/Drone research/Data/GCPs/AOI3",height_offset=1)
 

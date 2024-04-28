@@ -3,7 +3,8 @@
 
 # Load necessary libraries----
 library(exifr)
-
+library(sf)
+library(terra)
 ##Importing image files for each AOI
 
 AOI1 <- list.files("C:/Users/202200875/OneDrive - buan.ac.bw/Documents/Drone research/Data/GCPs/AOI1",full.names = TRUE) ## Area of interest 1 GCPs
@@ -45,3 +46,6 @@ GCP_AOI3 <- data.frame(x = x3, y = y3, ground_altitude = alt3)
 write.csv(GCP_AOI1, "AOI1_data.csv", row.names = FALSE)
 write.csv(GCP_AOI2, "AOI2_data.csv", row.names = FALSE)
 write.csv(GCP_AOI3, "AOI3_data.csv", row.names = FALSE)
+st_crs(GCP_AOI1)
+##Define projection
+GCP_AOI1.32735 <- st_set_crs(GCP_AOI1, value = 32735)
