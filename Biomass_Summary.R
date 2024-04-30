@@ -27,8 +27,18 @@ write.csv(Biomass_Summary, file = "Biomass_summary.csv", row.names = FALSE)
 
 
 #### Playing around
-summary(Biomass_Summary)
-plot(Biomass_Summary)
-ggplot(Biomass_Summary, aes(Species,total_AGB))+
+
+
+summary(Biomass_summary)
+plot(Biomass_summary)
+ggplot(Biomass_summary, aes(AOI,total_AGB))+
   geom_point()+
   geom_smooth(method = "lm")
+
+ggplot(Biomass_summary, aes(AOI,total_AGB,color=AOI))+
+  geom_boxplot()+
+  geom_point()+
+  theme_classic()+
+  labs(title = "Biomass summary")
+
+
