@@ -21,7 +21,7 @@ read_exif(AOI3)
 gcps1 <- as.data.frame(read_exif(AOI1))
 gcps2 <- as.data.frame(read_exif(AOI2))
 gcps3 <- as.data.frame(read_exif(AOI3))
-
+gcps1
 ###extract x and y coordinates
 x1 <- gcps1$GPSLongitude   ## x coordinates for AOI1 GCPs
 y1 <- gcps1$GPSLatitude    ## y coordinates for AOI1 GCPs
