@@ -38,7 +38,7 @@ source("Packages.R")
   combined_metadata <- do.call(rbind, xy_coords)
   
   # Define CRS of coordinates
-  crs <- "WGS84 EPSG::32735"
+  crs <- "EPSG:4326"
   # Insert a new row specifying CRS
   combined_metadata <- rbind(
     data.frame(

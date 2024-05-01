@@ -36,9 +36,13 @@ ggplot(Biomass_summary, aes(AOI,total_AGB))+
   geom_smooth(method = "lm")
 
 ggplot(Biomass_summary, aes(AOI,total_AGB,color=AOI))+
-  geom_boxplot()+
+  geom_violin()+
   geom_point()+
   theme_classic()+
   labs(title = "Biomass summary")
+unique(Biomass_summary$Species)
+
+ggplot(Biomass_summary, aes(x=total_AGB))+
+  geom_histogram()
 
 
