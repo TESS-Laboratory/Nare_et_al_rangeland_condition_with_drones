@@ -1,8 +1,10 @@
-source("Packages.R")
+# Load packages
+library(exifr)
 
-##Define directory parth
+# Define directory path
 directory_path <- ("C:/Users/202200875/OneDrive - buan.ac.bw/Documents/Drone research/Data/Harvest plots")
-## Create function
+
+# Create function
 extract.harvestplot.metadata <- function(directory_path, height_offset = 0) {
   # Extract directory name to use as the name for the output csv
   directory_name <- basename(directory_path)
@@ -21,15 +23,18 @@ extract.harvestplot.metadata <- function(directory_path, height_offset = 0) {
     file_names[[file]] <- basename(file)
   }
   
-  # Extract x, y, z coordinates and GNSS-derived datetime stamp
+  # Extract x, y, z coordinates, GNSS-derived datetime stamp, and RTK data
   xy_coords <- lapply(metadata_list, function(x) {
     data.frame(
       latitude = x$GPSLatitude,
       longitude = x$GPSLongitude,
       altitude = x$GPSAltitude - height_offset,
-      xy_accuracy = 0.03,       # Temporary hard coded number, still working on the metric
-      z_accuracy = 0.06,        # Temporary hard coded number, still working on the metric
-      datetime_stamp = x$DateTimeOriginal
+      datetime_stamp = x$DateTimeOriginal,
+      RtkFlag = x$RtkFlag,
+      RtkSrcType = x$RtkSrcType,
+      RtkStdLon = x$RtkStdLon,
+      RtkStdLat = x$RtkStdLat,
+      RtkStdHgt = x$RtkStdHgt
     )
   })
   
@@ -48,9 +53,12 @@ extract.harvestplot.metadata <- function(directory_path, height_offset = 0) {
       latitude = "CRS",
       longitude = crs,
       altitude = NA,
-      xy_accuracy = NA,
-      z_accuracy = NA,
       datetime_stamp = NA,
+      RtkFlag = NA,
+      RtkSrcType = NA,
+      RtkStdLon = NA,
+      RtkStdLat = NA,
+      RtkStdHgt = NA,
       file_name = NA
     ),
     combined_metadata
@@ -64,4 +72,3 @@ extract.harvestplot.metadata <- function(directory_path, height_offset = 0) {
 extract.harvestplot.metadata("C:/Users/202200875/OneDrive - buan.ac.bw/Documents/Drone research/Data/Harvest plots/AOI1", height_offset = 1)
 extract.harvestplot.metadata("C:/Users/202200875/OneDrive - buan.ac.bw/Documents/Drone research/Data/Harvest plots/AOI2", height_offset = 1)
 extract.harvestplot.metadata("C:/Users/202200875/OneDrive - buan.ac.bw/Documents/Drone research/Data/Harvest plots/AOI3", height_offset = 1)
-
