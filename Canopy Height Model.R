@@ -8,7 +8,7 @@ library(RCSF)   ## For Cloth Simulation Filter ground classification
 
 ####Import point cloud data for AOIs---- 
 #in the case of multispectral data, use readMSLAS
-aoi1 <- readLAS("C:/Users/202200875/OneDrive - buan.ac.bw/Documents/Drone research/Data/Metashape Analysis/AOI1 RGB metashape analysis/AOI1_pointcloud_RGB.laz", select = "xyzrn")
+aoi1 <- readLAS("C:/Users/202200875/Downloads/AOI1_pointcloud_RGB.laz", select = "xyzrn")
 aoi2 <- readLAS("C:/Users/202200875/OneDrive - buan.ac.bw/Documents/Drone research/Data/Metashape Analysis/AOI2 RGB metashape analysis/AOI2_pointcloud.laz", select = "xyzrn")
 aoi3 <- readLAS("C:/Users/202200875/OneDrive - buan.ac.bw/Documents/Drone research/Data/Metashape Analysis/AOI3 RGB metashape analysis/AOI3_pointcloud.laz", select = "xyzrn")  # load XYZc only
 
@@ -52,8 +52,10 @@ csf_params <- csf(class_threshold = 0.5, cloth_resolution = 0.1, rigidness = 1,
 
 # Perform ground classification using CSF
 gnd_class_AOI1 <- classify_ground(las_clipped_aoi1, csf_params)
+summary(gnd_class_AOI1)
 # Visualize the classified point cloud
 plot(gnd_class_AOI1, color = "Classification")
+
 
 ####Step 2- Derivation of a Digital Terrain Model (DTM)----
 ??rasterize_terrain
@@ -61,6 +63,8 @@ dtm_aoi1 <- rasterize_terrain(gnd_class_AOI1, res = 0.01, algorithm = tin())
 plot_dtm3d(dtm_aoi1, bg = "white")
 plot(dtm_aoi1, col = gray(1:50/50))
 
+gnd <- filter_ground(gnd_class_AOI1)
+plot(gnd, size = 3, bg = "white", color = "Classification")
 
 ####Step 3- Height above ground----
 # Generate Canopy Height Model (CHM)
