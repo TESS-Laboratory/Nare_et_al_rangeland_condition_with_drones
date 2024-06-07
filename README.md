@@ -10,7 +10,7 @@ Description: This research aimed to assess how UAV fine-scale remote sensing cou
 
 The following scripts were used for this study.
 
-1). Function for extracting GCP metadata- T
-2). Harvest plot metadata extraction
-3). Biomass_Summary
-4). Lidr
+1). Function for extracting GCP metadata- This R script extracts EXIF metadata from images captured using DJI drones (e.g., Phantom 4 RTK and Phantom 4 Multispectral) to obtain x, y, and z coordinates, date and time stamps, and RTK accuracy information. The extracted metadata is saved as CSV files for each Area of Interest (AOI).
+2). Harvest plot metadata extraction- Performs the same function as the GCP EXIF extraction script, but it extracts exif data for harvest plots to obtain x,y,z coordinates
+4). Canopy Height Model- This script performs canopy height modelling (CHM) using drone-derived point cloud data. It imports LAS files, clips out areas of interest (AOIs), filters ground points, generates a Digital Terrain Model (DTM), and calculates heights above ground (HAG). It then creates CHMs using different algorithms,  and post-processes the CHM by filling gaps, smoothing, and exporting the result as a GeoTIFF.
+3). Biomass_Summary- This script cleans biomass data from a CSV file, computes the total dry weight for each plot, and identifies the rows (plant species) corresponding to maximum biomass for each plot. It then saves the summarised data as a new CSV file and performs various visualizations using ggplot2.
