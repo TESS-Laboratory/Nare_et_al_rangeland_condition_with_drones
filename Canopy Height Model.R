@@ -16,7 +16,7 @@ library(terra)      ####For CHM smoothing (Post processing)
 ####Import point cloud data for AOIs---- 
 
 aoi1 <- readLAS("C:/Users/202200875/OneDrive - buan.ac.bw/Documents/Drone research/Data/Metashape Analysis/AOI1 RGB metashape analysis/Classified_AOI1.laz", select = "xyzrnc")
-aoi2 <- readLAS("C:/Users/202200875/OneDrive - buan.ac.bw/Documents/Drone research/Data/Metashape Analysis/AOI2 RGB metashape analysis/AOI2_pointcloud.laz", select = "xyzrn")
+aoi2 <- readLAS("C:/Users/202200875/OneDrive - buan.ac.bw/Documents/Drone research/Data/Metashape Analysis/AOI2 RGB metashape analysis/AOI2_pointcloud.laz", select = "xyzrnc")
 aoi3 <- readLAS("C:/Users/202200875/OneDrive - buan.ac.bw/Documents/Drone research/Data/Metashape Analysis/AOI3 RGB metashape analysis/AOI3_pointcloud.laz", select = "xyzrn")  # load XYZc only
 hist(aoi1@data$Classification)
 
@@ -119,5 +119,4 @@ plot(smoothed_CHM2, col = col)
 
 ########### Step 9 Export the smoothed CHM2 to a GeoTIFF file###################
 writeRaster(smoothed_CHM2, "CHM2_smoothed.tif", overwrite = TRUE)
-
 
